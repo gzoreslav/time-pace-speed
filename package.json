@@ -28,7 +28,7 @@
     "type": "git",
     "url": "git+https://github.com/gzoreslav/time-pace-speed.git"
   },
-  "tonicExampleFilename": "examples/tonic.js"
+  "tonicExampleFilename": "examples/tonic.js",
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.6.5",
