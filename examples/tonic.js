@@ -1,5 +1,12 @@
 var tps = require("time-pace-speed");
 
+/* GENERAL EXAMPLE */
+var i = tps.interval(21.6, '01:13:45.120');
+var speed = i.speed_km_per_hour();
+var pace = i.pace_per_km('mm:ss.SSS');
+console.log('User run distance of 21.6km in 01:13:45.120');
+console.log(`speed ${speed} km/h, pace ${pace}`);
+
 /* DISTANCES */
 var d1 = tps.dist(1);
 console.log(`1 km = ${d1.km()} km`);
