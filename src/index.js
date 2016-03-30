@@ -1,5 +1,4 @@
 import moment from 'moment';
-import _ from 'lodash';
 
 
 const format = 'HH:mm:ss.SSS';

@@ -1,12 +1,11 @@
 {
   "name": "time-pace-speed",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Simple library for competitions result calculation - timediff, pace, speed, etc.",
   "main": "lib/index.js",
   "scripts": {
     "compile": "babel --experimental --optional runtime -d lib/ src/",
-    "prepublish": "npm run compile",
-    "test": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha"
+    "prepublish": "npm run compile"
   },
   "babel": {
     "presets": [
