@@ -1,0 +1,7 @@
+node_modules/
+lib/
+.idea/
+.DS_STORE
+.gitignore~
+npm-debug.log
+coverage/
