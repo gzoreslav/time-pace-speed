@@ -1,6 +1,6 @@
 {
   "name": "time-pace-speed",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Simple library for competitions result calculation - timediff, pace, speed, etc.",
   "main": "lib/index.js",
   "scripts": {
