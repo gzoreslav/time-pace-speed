@@ -1,6 +1,6 @@
 {
   "name": "time-pace-speed",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Simple library for competitions result calculation - timediff, pace, speed, etc.",
   "main": "lib/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "type": "git",
     "url": "git+https://github.com/gzoreslav/time-pace-speed.git"
   },
+  "tonicExampleFilename": "examples/tonic.js"
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.6.5",

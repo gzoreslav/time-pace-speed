@@ -4,10 +4,6 @@ Simple calculation of duration, speed, pace and other values for sport competiti
 ## Installation
 
     $ npm install time-pace-speed
-
-## Try it out
-
-https://tonicdev.com/gzoreslav/time-speed-pace-demo -- try this package on https://tonicdev.com
  
 ## How to use?
 
