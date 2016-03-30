@@ -32,7 +32,7 @@ Init time durations
 */
 tps.time('01:13:45.120').format();             // -> 01:13:45.120
 tps.time('00:13:45.000').format('mm:ss');      // -> 13:45
-tps.time('13:45', 'ss:mm').format('HH:mm:ss'); // -> 13:45
+tps.time('13:45', 'ss:mm').format('HH:mm:ss'); // -> 00:13:45
 
 /*
 Calculate 
