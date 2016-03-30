@@ -1,6 +1,10 @@
 # time-pace-speed
 Simple calculation of duration, speed, pace and other values for sport competitions
 
+## Welcome
+
+Package is in development state. Feel free to open pull request and/or propouse new features, bug-fixing, etc. It's under MIT license.
+
 ## Installation
 
     $ npm install time-pace-speed
