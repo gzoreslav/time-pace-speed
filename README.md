@@ -1,5 +1,5 @@
 # time-pace-speed
-Simple library for competitions result calculation - timediff, pace, speed, etc. Also is good for time formatting, add, substract, tec.
+Simple library for competitions result calculation - time, pace, speed, etc. Also is good for time formatting, add times, substract times, etc.
 
 ## Welcome
 
