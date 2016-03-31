@@ -16,7 +16,7 @@ import tps from 'time-pace-speed';
 ```
 
 
-### DISTANCE
+#### DISTANCE
 
 ```js
 // Init
@@ -34,7 +34,7 @@ tps.dist(1, 'km').add(1).km();      // -> 1.001 (1km + 1m = 1.001km)
 tps.dist(1, 'km').substract(1).m(); // -> 999   (1km - 1m = 999m)
 ```
 
-### DURATION (TIME)
+#### DURATION (TIME)
 
 ```js
 // Init
@@ -61,7 +61,7 @@ tps.time('01:13:45.120').add('01:00:00.000').add('01.00.00.999').format(); // ->
 tps.time('01:13:45.120').substract('01:00:00.100').format();               // -> 00:13:45:020
 ```
 
-### INTERVAL
+#### INTERVAL
 
 ```js
 // Init
