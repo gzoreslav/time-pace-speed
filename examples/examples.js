@@ -1,3 +1,3 @@
-import sportTime from '../src/index.js';
+import tps from '../src/index.js';
 
-window.sportTime = sportTime;
+window.tps = tps;

@@ -7,7 +7,7 @@ var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-window.sportTime = _index2.default;
+window.tps = _index2.default;
 
 },{"../src/index.js":3}],2:[function(require,module,exports){
 //! moment.js
@@ -3702,9 +3702,263 @@ window.sportTime = _index2.default;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 exports.interval = exports.dist = exports.time = undefined;
+
+var _time = require('./modules/time.js');
+
+var _time2 = _interopRequireDefault(_time);
+
+var _dist = require('./modules/dist.js');
+
+var _dist2 = _interopRequireDefault(_dist);
+
+var _interval = require('./modules/interval.js');
+
+var _interval2 = _interopRequireDefault(_interval);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var time = exports.time = function time(timeValue, timeFormat) {
+	return new _time2.default(timeValue, timeFormat);
+};
+
+var dist = exports.dist = function dist(distValue, distUnit) {
+	return new _dist2.default(distValue, distUnit);
+};
+
+var interval = exports.interval = function interval(distValue, timeValue, distUnit, timeFormat) {
+	return new _interval2.default(distValue, timeValue, distUnit, timeFormat);
+};
+
+exports.default = {
+	time: time,
+	dist: dist,
+	interval: interval
+};
+
+},{"./modules/dist.js":5,"./modules/interval.js":6,"./modules/time.js":9}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var DEFAULT_TIME_FORMAT = exports.DEFAULT_TIME_FORMAT = 'HH:mm:ss.SSS';
+
+var DEFAULT_DIST_UNIT = exports.DEFAULT_DIST_UNIT = 'm';
+
+var DIST_UNITS_CONVERTOR = exports.DIST_UNITS_CONVERTOR = {
+	km: 1000,
+	m: 1,
+	cm: 0.01,
+	mm: 0.001,
+	mile: 1609.344
+};
+
+var DEFAULT_TIME_UNIT = exports.DEFAULT_TIME_UNIT = 'ms';
+
+var TIME_UNITS_CONVERTOR = exports.TIME_UNITS_CONVERTOR = {
+	ms: 1,
+	s: 1000,
+	m: 60 * 1000,
+	h: 60 * 60 * 1000
+};
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _const = require('./const.js');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var convertRight = function convertRight(value, unit) {
+  return value * _const.DIST_UNITS_CONVERTOR[unit || _const.DEFAULT_DIST_UNIT];
+};
+
+var tpsDist = function () {
+
+  /**
+   * tpsDist class, initialized with distance value.
+   * @param {int|float} distValue
+   * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+   * @return {Object} this
+   * @constructor
+   */
+
+  function tpsDist(distValue, distUnit) {
+    _classCallCheck(this, tpsDist);
+
+    this.dist = convertRight(distValue, distUnit);
+    return this;
+  }
+
+  /**
+   * converts this.dist into appropriate unit
+   * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+   * @return {float}
+   */
+
+
+  _createClass(tpsDist, [{
+    key: 'convert',
+    value: function convert(distUnit) {
+      return this.dist / _const.DIST_UNITS_CONVERTOR[distUnit || _const.DEFAULT_DIST_UNIT];
+    }
+
+    /**
+     * converts this.dist to killometres
+     * @return {float} killometers
+     */
+
+  }, {
+    key: 'km',
+    value: function km() {
+      return this.convert('km');
+    }
+
+    /**
+     * converts this.dist to metres
+     * @return {float} meters
+     */
+
+  }, {
+    key: 'm',
+    value: function m() {
+      return this.convert('m');
+    }
+
+    /**
+     * converts this.dist to centimetres
+     * @return {float} centimetres
+     */
+
+  }, {
+    key: 'cm',
+    value: function cm() {
+      return this.convert('cm');
+    }
+
+    /**
+     * converts this.dist to millimetres
+     * @return {float} millimetres
+     */
+
+  }, {
+    key: 'mm',
+    value: function mm() {
+      return this.convert('mm');
+    }
+
+    /**
+     * converts this.dist to miles
+     * @return {float} miles
+     */
+
+  }, {
+    key: 'miles',
+    value: function miles() {
+      return this.convert('mile');
+    }
+
+    /**
+     * add distance to this.dist
+     * modifies this.dist
+     * @param {int|float} distValue
+     * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+     * @return {Object} this
+     */
+
+  }, {
+    key: 'add',
+    value: function add(distValue, distUnit) {
+      this.dist = this.dist + convertRight(distValue, distUnit);
+      return this;
+    }
+
+    /**
+     * substracts distance from this.dist
+     * modifies this.dist
+     * @param {int|float} distValue
+     * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+     * @return {Object} this
+     */
+
+  }, {
+    key: 'substract',
+    value: function substract(distValue, distUnit) {
+      this.dist = this.dist - convertRight(distValue, distUnit);
+      return this;
+    }
+  }]);
+
+  return tpsDist;
+}();
+
+exports.default = tpsDist;
+
+},{"./const.js":4}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _time = require('./time.js');
+
+var _time2 = _interopRequireDefault(_time);
+
+var _dist = require('./dist.js');
+
+var _dist2 = _interopRequireDefault(_dist);
+
+var _speed = require('./speed.js');
+
+var _speed2 = _interopRequireDefault(_speed);
+
+var _pace = require('./pace.js');
+
+var _pace2 = _interopRequireDefault(_pace);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var tpsInterval =
+
+/**
+ * tpsInterval class, wrapper for tpsSpeed and tpsPace classes
+ * @param {int|float} distValue
+ * @param {string|moment} timeValue
+ * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+ * @param {string} timeFormat Optional default DEFAULT_TIME_FORMAT 'HH:mm:ss.SSS'
+ * @return {Object} this
+ * @constructor
+ */
+function tpsInterval(distValue, timeValue, distUnit, timeFormat) {
+    _classCallCheck(this, tpsInterval);
+
+    this.time = new _time2.default(timeValue, timeFormat);
+    this.dist = new _dist2.default(distValue, distUnit);
+    this.speed = new _speed2.default(this);
+    this.pace = new _pace2.default(this);
+    return this;
+};
+
+exports.default = tpsInterval;
+
+},{"./dist.js":5,"./pace.js":7,"./speed.js":8,"./time.js":9}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -3712,257 +3966,272 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _time = require('./time.js');
+
+var _time2 = _interopRequireDefault(_time);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _format = 'HH:mm:ss.SSS';
+var tpsPace = function () {
 
-var unit = 'km';
+    /**
+     * tpsPace class
+     * @param {Object} tpsInterval
+     * @return {Object} this
+     * @constructor
+     */
 
-var unitsR = {
-  'km': 1,
-  'm': 0.001,
-  'cm': 0.00001,
-  'mm': 0.000001,
-  'mile': 1.609344
-};
+    function tpsPace(params) {
+        _classCallCheck(this, tpsPace);
 
-var unitsL = {
-  'km': 1,
-  'm': 1000,
-  'cm': 100000,
-  'mm': 1000000,
-  'mile': 0.621371192237334
-};
-
-var utc = function utc(t, f) {
-  return _moment2.default.utc('1970-01-01 ' + t, 'YYYY-MM-DD ' + (f || _format));
-};
-
-var sportTime = function () {
-  function sportTime(t, f) {
-    _classCallCheck(this, sportTime);
-
-    if (t && t._isAMomentObject) {
-      this.time = t;
-    } else {
-      if (t) {
-        this.time = utc(t, f || _format);
-      } else {
-        this.time = utc('00:00:00.000');
-      }
+        this.time = params.time;
+        this.dist = params.dist;
+        return this;
     }
+
+    /**
+     * calculate pace in appropriate distance and returns time formatted int timeFormat
+     * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+     * @return {float}
+     */
+
+
+    _createClass(tpsPace, [{
+        key: 'convert',
+        value: function convert(distUnit) {
+            return new _time2.default(_moment2.default.utc(this.time.milliseconds() / this.dist.convert(distUnit)));
+        }
+
+        /**
+         * calculate pace time per kilometer
+         * @return {moment}
+         */
+
+    }, {
+        key: 'per_km',
+        value: function per_km() {
+            return this.convert('km');
+        }
+    }]);
+
+    return tpsPace;
+}();
+
+exports.default = tpsPace;
+
+},{"./time.js":9,"moment":2}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var tpsSpeed = function () {
+
+    /**
+     * tpsSpeed class
+     * @param {Object} tpsInterval
+     * @return {Object} this
+     * @constructor
+     */
+
+    function tpsSpeed(params) {
+        _classCallCheck(this, tpsSpeed);
+
+        this.time = params.time;
+        this.dist = params.dist;
+        return this;
+    }
+
+    /**
+     * calculate speed in appropriate distance and time units, example km/h, MPH
+     * @param {string} distUnit Optional default DEFAULT_DIST_UNIT 'm' - meters
+     * @param {string} timeUnit Optional default DEFAULT_TIME_UNIT 'h' - hour
+     * @return {float}
+     */
+
+
+    _createClass(tpsSpeed, [{
+        key: 'convert',
+        value: function convert(distUnit, timeUnit) {
+            return this.dist.convert(distUnit) / this.time.convert(timeUnit);
+        }
+    }, {
+        key: 'km_h',
+        value: function km_h() {
+            return this.convert('km', 'h');
+        }
+    }, {
+        key: 'mph',
+        value: function mph() {
+            return this.convert('mile', 'h');
+        }
+    }]);
+
+    return tpsSpeed;
+}();
+
+exports.default = tpsSpeed;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _const = require('./const.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var utc = function utc(timeValue, timeFormat) {
+  return _moment2.default.utc('1970-01-01 ' + timeValue, 'YYYY-MM-DD ' + (timeFormat || _const.DEFAULT_TIME_FORMAT));
+};
+
+var tpsTime = function () {
+
+  /**
+   * tpsTime class, initialized with time value.
+   * @param {string|moment} timeValue Optional default '00:00:00.000'
+   * @param {string} timeFormat Optional default DEFAULT_TIME_FORMAT 'HH:mm:ss.SSS'
+   * @return {Object} this
+   * @constructor
+   */
+
+  function tpsTime(timeValue, timeFormat) {
+    _classCallCheck(this, tpsTime);
+
+    this.time = timeValue && timeValue._isAMomentObject ? timeValue : utc(timeValue || '00:00:00.000', timeValue && timeFormat ? timeFormat : _const.DEFAULT_TIME_FORMAT);
     return this;
   }
 
-  _createClass(sportTime, [{
-    key: 'value',
-    value: function value() {
+  /**
+   * @return {Moment} this.time
+   */
+
+
+  _createClass(tpsTime, [{
+    key: 'asMoment',
+    value: function asMoment() {
       return this.time;
     }
+
+    /**
+     * formats this.time into appropriate format
+     * @param {string} timeFormat Optional default DEFAULT_TIME_FORMAT 'HH:mm:ss.SSS'
+     * @return {string}
+     */
+
   }, {
     key: 'format',
-    value: function format(f) {
-      return this.time.format(f || _format);
+    value: function format(timeFormat) {
+      return this.time.format(timeFormat || _const.DEFAULT_TIME_FORMAT);
     }
+
+    /**
+     * converts this.time into appropriate unit
+     * @param {string} timeUnit Optional default DEFAULT_TIME_UNIT 'ms' - milliseconds
+     * @return {float}
+     */
+
+  }, {
+    key: 'convert',
+    value: function convert(timeUnit) {
+      return parseInt(this.format('x')) / _const.TIME_UNITS_CONVERTOR[timeUnit || _const.DEFAULT_TIME_UNIT];
+    }
+
+    /**
+     * @return {int} milliseconds
+     */
+
   }, {
     key: 'milliseconds',
     value: function milliseconds() {
-      return parseInt(this.format('x'));
+      return this.convert();
     }
+
+    /**
+     * calculate time as seconds with decimical part
+     * @return {float} seconds
+     */
+
   }, {
     key: 'seconds',
     value: function seconds() {
-      return this.milliseconds() / 1000;
+      return this.convert('s');
     }
+
+    /**
+     * calculate time as minutes with decimical part
+     * @return {float} minutes
+     */
+
   }, {
     key: 'minutes',
     value: function minutes() {
-      return this.seconds() / 60;
+      return this.convert('m');
     }
+
+    /**
+     * calculate time as hours with decimical part
+     * @return {float} hours
+     */
+
   }, {
     key: 'hours',
     value: function hours() {
-      return this.minutes() / 60;
+      return this.convert('h');
     }
+
+    /**
+     * substract time from this.time
+     * modifies this.time
+     * @param {string|moment} timeValue
+     * @param {string} timeFormat Optional default DEFAULT_TIME_FORMAT 'HH:mm:ss.SSS'
+     * @return {Object} this
+     */
+
   }, {
-    key: 'subtract',
-    value: function subtract(t, f) {
-      t = t._isAMomentObject ? t : utc(t, f);
-      this.time = _moment2.default.utc(this.time - t);
+    key: 'substract',
+    value: function substract(timeValue, timeFormat) {
+      this.time = _moment2.default.utc(this.time - (timeValue._isAMomentObject ? timeValue : utc(timeValue, timeFormat)));
       return this;
     }
+
+    /**
+     * add time to this.time
+     * modifies this.time
+     * @param {string|moment} timeValue
+     * @param {string} timeFormat Optional default DEFAULT_TIME_FORMAT 'HH:mm:ss.SSS'
+     * @return {Object} this
+     */
+
   }, {
     key: 'add',
-    value: function add(t, f) {
-      t = t._isAMomentObject ? t : utc(t, f);
-      this.time = _moment2.default.utc(this.time + t);
+    value: function add(timeValue, timeFormat) {
+      this.time = _moment2.default.utc(this.time + (timeValue._isAMomentObject ? timeValue : utc(timeValue, timeFormat)));
       return this;
     }
   }]);
 
-  return sportTime;
+  return tpsTime;
 }();
 
+exports.default = tpsTime;
 ;
 
-/*    sum(times, f) {
-    	let _sum = 0;
-    	for (var i = 0; i < times.length; i++) {
-    		_sum = _sum + (times[i]._isAMomentObject ? times[i] : utc(times[i], f));
-    	}
-    	this.time = moment.utc(_sum);
-    	return this;
-    }
-
-    avg(times, f) {
-    	let _sum = 0;
-    	for (var i = 0; i < times.length; i++) {
-    		_sum = _sum + (times[i]._isAMomentObject ? times[i] : utc(times[i], f));
-    	}
-    	_sum = _sum / times.length;
-    	this.time = moment.utc(_sum);
-    	return this;
-    }
-
-    min(times, f) {
-    	let result = 0;
-    	let min = times[0]._isAMomentObject ? times[0] : utc(times[0], f);
-    	for (var i = 1; i < times.length; i++) {
-    		if (min > (times[i]._isAMomentObject ? times[i] : utc(times[i], f))) {
-    			min = times[i]._isAMomentObject ? times[i] : utc(times[i], f);
-    			result = i;
-    		}
-    	}
-    	return {
-    		index: result,
-    		time: time(min, f)
-    	};
-    }
-
-    max(times, f) {
-    	let result = 0;
-    	let max = times[0]._isAMomentObject ? times[0] : utc(times[0], f);
-    	for (var i = 1; i < times.length; i++) {
-    		if (max < (times[i]._isAMomentObject ? times[i] : utc(times[i], f))) {
-    			max = times[i]._isAMomentObject ? times[i] : utc(times[i], f);
-    			result = i;
-    		}
-    	}
-    	return {
-    		index: result,
-    		time: time(max, f)
-    	};
-    }
-}*/
-
-var time = exports.time = function time(t, f) {
-  return new sportTime(t, f);
-};
-
-var sportDist = function () {
-
-  //km is default for dist
-
-  function sportDist(d, f) {
-    _classCallCheck(this, sportDist);
-
-    this.dist = d * unitsR[f || 'km'];
-    return this;
-  }
-
-  _createClass(sportDist, [{
-    key: 'value',
-    value: function value() {
-      return this.dist;
-    }
-  }, {
-    key: 'format',
-    value: function format(f) {
-      return this.dist * unitsL[f || 'km'];
-    }
-  }, {
-    key: 'km',
-    value: function km() {
-      return this.format('km');
-    }
-  }, {
-    key: 'm',
-    value: function m() {
-      return this.format('m');
-    }
-  }, {
-    key: 'cm',
-    value: function cm() {
-      return this.format('cm');
-    }
-  }, {
-    key: 'mm',
-    value: function mm() {
-      return this.format('mm');
-    }
-  }, {
-    key: 'miles',
-    value: function miles() {
-      return this.format('mile');
-    }
-  }, {
-    key: 'add',
-    value: function add(d, f) {
-      this.dist = this.dist + d * unitsR[f || 'km'];
-      return this;
-    }
-  }, {
-    key: 'subtract',
-    value: function subtract(d, f) {
-      this.dist = this.dist - d * unitsR[f || 'km'];
-      return this;
-    }
-  }]);
-
-  return sportDist;
-}();
-
-var dist = exports.dist = function dist(d, f) {
-  return new sportDist(d, f);
-};
-
-var sportInterval = function () {
-
-  //km is default for dist
-
-  function sportInterval(d, t, df, tf) {
-    _classCallCheck(this, sportInterval);
-
-    this.sportTime = time(t, tf);
-    this.dist = d * unitsR[df || 'km'];
-    return this;
-  }
-
-  _createClass(sportInterval, [{
-    key: 'speed_km_per_hour',
-    value: function speed_km_per_hour() {
-      return this.dist / this.sportTime.hours();
-    }
-  }, {
-    key: 'pace_per_km',
-    value: function pace_per_km(f) {
-      return _moment2.default.utc(this.sportTime.milliseconds() / this.dist).format(f || _format);
-    }
-  }]);
-
-  return sportInterval;
-}();
-
-var interval = exports.interval = function interval(d, t, df, tf) {
-  return new sportInterval(d, t, df, tf);
-};
-
-exports.default = {
-  time: time,
-  dist: dist,
-  interval: interval
-};
-
-},{"moment":2}]},{},[1]);
+},{"./const.js":4,"moment":2}]},{},[1]);
