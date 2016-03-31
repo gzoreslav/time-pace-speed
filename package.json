@@ -1,7 +1,7 @@
 {
   "name": "time-pace-speed",
   "version": "0.1.0",
-  "description": "Simple library for competitions result calculation - timediff, pace, speed, etc.",
+  "description": "Simple library for competitions result calculation - time, pace, speed, etc.",
   "main": "lib/index.js",
   "scripts": {
     "compile": "babel --experimental --optional runtime -d lib/ src/",
