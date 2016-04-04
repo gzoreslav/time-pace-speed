@@ -1,3 +1,5 @@
+/*eslint-disable no-console */
+
 var tps = require("time-pace-speed");
 
 /* GENERAL EXAMPLE */
@@ -20,3 +22,5 @@ console.log(`1 mile = ${d2.km()} km`);
 console.log(tps.time('01:13:45.120').format());
 console.log(tps.time('00:13:45.000').format('mm:ss'));
 console.log(tps.time('13:45', 'ss:mm').format('HH:mm:ss'));
+
+/*eslint-enable no-console */

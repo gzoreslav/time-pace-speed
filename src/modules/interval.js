@@ -16,11 +16,11 @@ export default class tpsInterval {
      * @constructor
      */
     constructor(distValue, timeValue, distUnit, timeFormat) {
-    	this.time = new tpsTime(timeValue, timeFormat);
-    	this.dist = new tpsDist(distValue, distUnit);
+        this.time = new tpsTime(timeValue, timeFormat);
+        this.dist = new tpsDist(distValue, distUnit);
         this.speed = new tpsSpeed(this);
         this.pace = new tpsPace(this);
-    	return this;
+        return this;
     }
 
 }

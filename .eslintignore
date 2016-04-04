@@ -1,0 +1,4 @@
+Gruntfile.js
+lib/**/*
+examples/build.js
+node_modules/**/*

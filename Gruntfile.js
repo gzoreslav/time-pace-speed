@@ -15,10 +15,19 @@ module.exports = function (grunt) {
                     './examples/build.js': ['./examples/examples.js']
                 }
             }
-        }
+        },
+        eslint: {
+            target: [
+                'src/**/*.js',
+                'examples/**/*.js'
+            ]
+        },
     });
 
-    grunt.loadNpmTasks("grunt-browserify");
 
-    grunt.registerTask("example", ["browserify"]);
+    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-eslint');
+
+    grunt.registerTask('example', ['browserify']);
+    grunt.registerTask('inspect', ['eslint']);
 };

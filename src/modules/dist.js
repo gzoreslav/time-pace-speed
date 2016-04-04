@@ -2,7 +2,7 @@ import {DEFAULT_DIST_UNIT, DIST_UNITS_CONVERTOR} from './const.js';
 
 const convertRight = (value, unit) => {
     return value * DIST_UNITS_CONVERTOR[unit || DEFAULT_DIST_UNIT];
-}
+};
 
 export default class tpsDist {
 
@@ -14,8 +14,8 @@ export default class tpsDist {
      * @constructor
      */
     constructor(distValue, distUnit) {
-    	this.dist = convertRight(distValue, distUnit);
-    	return this;
+        this.dist = convertRight(distValue, distUnit);
+        return this;
     }
 
     /**
@@ -24,7 +24,7 @@ export default class tpsDist {
      * @return {float}
      */
     convert(distUnit) {
-    	return this.dist / DIST_UNITS_CONVERTOR[distUnit || DEFAULT_DIST_UNIT];
+        return this.dist / DIST_UNITS_CONVERTOR[distUnit || DEFAULT_DIST_UNIT];
     }
 
     /**
@@ -32,7 +32,7 @@ export default class tpsDist {
      * @return {float} killometers
      */
     km() {
-    	return this.convert('km');
+        return this.convert('km');
     }
 
     /**
@@ -40,7 +40,7 @@ export default class tpsDist {
      * @return {float} meters
      */
     m() {
-    	return this.convert('m');
+        return this.convert('m');
     }
 
     /**
@@ -48,7 +48,7 @@ export default class tpsDist {
      * @return {float} centimetres
      */
     cm() {
-    	return this.convert('cm');
+        return this.convert('cm');
     }
 
     /**
@@ -56,7 +56,7 @@ export default class tpsDist {
      * @return {float} millimetres
      */
     mm() {
-    	return this.convert('mm');
+        return this.convert('mm');
     }
 
     /**
@@ -64,7 +64,7 @@ export default class tpsDist {
      * @return {float} miles
      */
     miles() {
-    	return this.convert('mile');
+        return this.convert('mile');
     }
 
     /**
@@ -75,8 +75,8 @@ export default class tpsDist {
      * @return {Object} this
      */
     add(distValue, distUnit) {
-    	this.dist = this.dist + convertRight(distValue, distUnit);
-    	return this;
+        this.dist = this.dist + convertRight(distValue, distUnit);
+        return this;
     }
 
     /**
@@ -87,8 +87,8 @@ export default class tpsDist {
      * @return {Object} this
      */
     substract(distValue, distUnit) {
-    	this.dist = this.dist - convertRight(distValue, distUnit);
-    	return this;
+        this.dist = this.dist - convertRight(distValue, distUnit);
+        return this;
     }
 
 }

@@ -3,8 +3,8 @@ import {DEFAULT_TIME_FORMAT, DEFAULT_TIME_UNIT, TIME_UNITS_CONVERTOR} from './co
 
 
 const utc = (timeValue, timeFormat) => {
-	return moment.utc(`1970-01-01 ${timeValue}`, `YYYY-MM-DD ${timeFormat || DEFAULT_TIME_FORMAT}`);
-}
+    return moment.utc(`1970-01-01 ${timeValue}`, `YYYY-MM-DD ${timeFormat || DEFAULT_TIME_FORMAT}`);
+};
 
 export default class tpsTime {
 
@@ -19,14 +19,14 @@ export default class tpsTime {
         this.time = (timeValue && timeValue._isAMomentObject)
             ? timeValue
             : utc(timeValue || '00:00:00.000', timeValue && timeFormat ? timeFormat : DEFAULT_TIME_FORMAT);
-    	return this;
+        return this;
     }
 
     /**
      * @return {Moment} this.time
      */
     asMoment() {
-    	return this.time;
+        return this.time;
     }
 
     /**
@@ -35,7 +35,7 @@ export default class tpsTime {
      * @return {string}
      */
     format(timeFormat) {
-    	return this.time.format(timeFormat || DEFAULT_TIME_FORMAT);
+        return this.time.format(timeFormat || DEFAULT_TIME_FORMAT);
     }
 
     /**
@@ -51,7 +51,7 @@ export default class tpsTime {
      * @return {int} milliseconds
      */
     milliseconds() {
-    	return this.convert();
+        return this.convert();
     }
 
     /**
@@ -59,7 +59,7 @@ export default class tpsTime {
      * @return {float} seconds
      */
     seconds() {
-    	return this.convert('s');
+        return this.convert('s');
     }
 
     /**
@@ -75,7 +75,7 @@ export default class tpsTime {
      * @return {float} hours
      */
     hours() {
-		return this.convert('h');
+        return this.convert('h');
     }
 
     /**
@@ -86,8 +86,8 @@ export default class tpsTime {
      * @return {Object} this
      */
     substract(timeValue, timeFormat) {
-    	this.time = moment.utc(this.time - (timeValue._isAMomentObject ? timeValue : utc(timeValue, timeFormat)));
-    	return this;
+        this.time = moment.utc(this.time - (timeValue._isAMomentObject ? timeValue : utc(timeValue, timeFormat)));
+        return this;
     }
 
     /**
@@ -98,7 +98,7 @@ export default class tpsTime {
      * @return {Object} this
      */
     add(timeValue, timeFormat) {
-    	this.time = moment.utc(this.time + (timeValue._isAMomentObject ? timeValue : utc(timeValue, timeFormat)));
-    	return this;
+        this.time = moment.utc(this.time + (timeValue._isAMomentObject ? timeValue : utc(timeValue, timeFormat)));
+        return this;
     }
-};
+}
