@@ -1,6 +1,6 @@
 {
   "name": "time-pace-speed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple library for competitions result calculation - time, pace, speed, etc.",
   "main": "lib/index.js",
   "scripts": {
@@ -13,11 +13,13 @@
     ]
   },
   "keywords": [
-    "sport",
     "time",
+    "duration",
     "pace",
     "speed",
-    "distance"
+    "distance",
+    "competition",
+    "sport"
   ],
   "author": "Zoreslav Goral <gzoreslav@gmail.com>",
   "license": {
